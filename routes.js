@@ -7,12 +7,16 @@ const ROUTES = [
             changeOrigin: false,
             onProxyReq: relayRequestHeaders,
         },
+    },
+    {
         url: '/api/auth/**',
         proxy: {
             target: 'http://localhost:8080',
             changeOrigin: false,
             onProxyReq: relayRequestHeaders,
         },
+    },
+    {
         url: '/api/**/user/**',
         proxy: {
             target: 'http://localhost:8080',
