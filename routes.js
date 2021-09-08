@@ -1,18 +1,45 @@
+// All gateway routes
 const ROUTES = [
     {
-        url: '/api/mp/auth/**',
-        // To implement
-        // rateLimit: {
-        //     windowMs: 15 * 60 * 1000,
-        //     max: 5,
-        // },
+        url: '/api/**/auth/**',
         proxy: {
             target: 'http://localhost:8080',
             changeOrigin: false,
+            onProxyReq: relayRequestHeaders,
+        },
+        url: '/api/auth/**',
+        proxy: {
+            target: 'http://localhost:8080',
+            changeOrigin: false,
+            onProxyReq: relayRequestHeaders,
+        },
+        url: '/api/**/user/**',
+        proxy: {
+            target: 'http://localhost:8080',
+            changeOrigin: false,
+            onProxyReq: relayRequestHeaders,
         },
     },
 ]
 
-const PUBLIC_ROUTES = ['/api/**/auth/login']
+// All public routes for gateway. Works as a whitelist against the auth check.
+const PUBLIC_ROUTES = [
+    '/api/**/auth/login',
+    '/api/**/auth/logout',
+    '/api/**/auth/forget-password/**',
+    '/api/auth/**',
+    '/api/**/user/register',
+]
+
+// Send claims info for downstream services to retrieve
+function relayRequestHeaders(proxyReq, req, res) {
+    if (req.jwt) {
+        const { userId, userType, role } = req.jwt
+
+        proxyReq.setHeader('UserId', userId)
+        proxyReq.setHeader('UserType', userType)
+        proxyReq.setHeader('UserRole', role)
+    }
+}
 
 module.exports = { ROUTES, PUBLIC_ROUTES }

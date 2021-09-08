@@ -10,9 +10,13 @@ const { ROUTES } = require('./routes')
 // setup app
 const app = express()
 
-// Setup middle wares
+// Setup request logging
 app.use(morgan('combined'))
+
+// Setup auth checks
 setupAuth(app, ROUTES)
+
+// Setup request proxy and routing
 setupProxyRoutes(app, ROUTES)
 
 app.listen(port, () => console.log(`gateway-node listening on port ${port}!`))
