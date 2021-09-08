@@ -37,11 +37,11 @@ const PUBLIC_ROUTES = [
 // Send claims info for downstream services to retrieve
 function relayRequestHeaders(proxyReq, req, res) {
     if (req.jwt) {
-        const { userId, userType, role } = req.jwt
+        const { userId, userType, roleId } = req.jwt
 
         proxyReq.setHeader('UserId', userId)
         proxyReq.setHeader('UserType', userType)
-        proxyReq.setHeader('UserRole', role)
+        proxyReq.setHeader('UserRoleId', roleId)
     }
 }
 
