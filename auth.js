@@ -12,8 +12,7 @@ async function setupAuth(app, routes) {
 
 // calls auth server's verify access token method.
 async function verifyAccessToken(req, res, next) {
-    console.log(`Process auth for ${req.baseUrl}`)
-
+    
     // skip auth if route is public
     if (req.baseUrl) {
         for (let r of PUBLIC_ROUTES) {
@@ -23,9 +22,10 @@ async function verifyAccessToken(req, res, next) {
             }
         }
     }
-
+    
     // call verify access token, return 401 if error
     try {
+        console.log(`Apply auth for ${req.baseUrl}`)
         const claimsJson = await axios.get(authUrl, {
             headers: {
                 Authorization: req.headers.authorization,
