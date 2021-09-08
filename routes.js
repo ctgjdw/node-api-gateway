@@ -1,11 +1,11 @@
 const ROUTES = [
     {
         url: '/api/mp/auth/**',
-        auth: false,
-        rateLimit: {
-            windowMs: 15 * 60 * 1000,
-            max: 5,
-        },
+        // To implement
+        // rateLimit: {
+        //     windowMs: 15 * 60 * 1000,
+        //     max: 5,
+        // },
         proxy: {
             target: 'http://localhost:8080',
             changeOrigin: false,
