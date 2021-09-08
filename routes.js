@@ -29,7 +29,7 @@ const ROUTES = [
 // All public routes for gateway. Works as a whitelist against the auth check.
 const PUBLIC_ROUTES = [
     '/api/**/auth/login',
-    '/api/**/auth/forget-password/**',
+    '/api/**/auth/forget-password**',
     '/api/auth/**',
     '/api/**/user/register',
 ]
