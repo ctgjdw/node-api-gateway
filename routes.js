@@ -17,7 +17,7 @@ const ROUTES = [
         },
     },
     {
-        url: '/api/**/user/**',
+        url: '/api/**/user**',
         proxy: {
             target: 'http://localhost:8080',
             changeOrigin: false,
