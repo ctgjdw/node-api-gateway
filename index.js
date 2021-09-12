@@ -6,9 +6,20 @@ const morgan = require('morgan')
 const setupProxyRoutes = require('./reverseProxy')
 const setupAuth = require('./auth')
 const { ROUTES } = require('./routes')
+const cors = require('cors');
 
 // setup app
 const app = express()
+
+// Setup CORS
+const corsOptions = {
+    origin: 'https://*.eq-lab-dev.me',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+}
+app.use(cors(corsOptions))
+app.options('*', cors(corsOptions))
 
 // Setup request logging
 app.use(morgan('combined'))
