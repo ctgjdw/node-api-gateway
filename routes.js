@@ -32,6 +32,14 @@ const ROUTES = [
             onProxyReq: relayRequestHeaders,
         },
     },
+    {
+        url: '/upload**',
+        proxy: {
+            target: 'http://localhost:8081',
+            changeOrigin: false,
+            onProxyReq: relayRequestHeaders,
+        },
+    },
 ]
 
 // All public routes for gateway. Works as a whitelist against the auth check.
