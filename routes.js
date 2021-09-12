@@ -49,6 +49,7 @@ const PUBLIC_ROUTES = [
     '/api/**/auth/forget-password**',
     '/api/auth/**',
     '/api/**/user/register',
+    '/upload/image/profile-pic',
 ]
 
 // Send claims info for downstream services to retrieve
