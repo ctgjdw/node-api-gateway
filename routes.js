@@ -40,6 +40,14 @@ const ROUTES = [
             onProxyReq: relayRequestHeaders,
         },
     },
+    {
+        url: '/api/ap/org/**',
+        proxy: {
+            target: 'http://localhost:8082',
+            changeOrigin: false,
+            onProxyReq: relayRequestHeaders,
+        },
+    },
 ]
 
 // All public routes for gateway. Works as a whitelist against the auth check.
