@@ -2,7 +2,6 @@ const axios = require('axios')
 const { PUBLIC_ROUTES } = require('./routes')
 const authUrl = process.env.AUTH_TOKEN_URL
 const { matchPattern } = require('url-matcher')
-const moment = require('moment');
 
 // setup auth middle wares for each route
 async function setupAuth(app, routes) {
@@ -51,8 +50,8 @@ async function verifyAccessToken(req, res, next) {
 // After the end of the proxy, adds cookies containing JWT claims for browser to interact with
 function passClaimsData(req, res, claimsJson) {
     // pass jwt claims to next middleware using req
-    const { userId, userType, userRoleId, userRole, exp } = claimsJson.data
-    req.jwt = {userId, userType, userRoleId, userRole, accessTokenExp: moment.unix(exp).toDate()}
+    const { userId, userType, userRoleId, userRole } = claimsJson.data
+    req.jwt = {userId, userType, userRoleId, userRole }
 }
 
 module.exports = setupAuth
