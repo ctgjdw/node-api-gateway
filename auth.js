@@ -2,6 +2,7 @@ const axios = require('axios')
 const { PUBLIC_ROUTES } = require('./routes')
 const authUrl = process.env.AUTH_TOKEN_URL
 const { matchPattern } = require('url-matcher')
+const moment = require('moment');
 
 // setup auth middle wares for each route
 async function setupAuth(app, routes) {
@@ -12,7 +13,6 @@ async function setupAuth(app, routes) {
 
 // calls auth server's verify access token method.
 async function verifyAccessToken(req, res, next) {
-    
     // skip auth if route is public
     if (req.baseUrl) {
         for (let r of PUBLIC_ROUTES) {
@@ -22,7 +22,7 @@ async function verifyAccessToken(req, res, next) {
             }
         }
     }
-    
+
     // call verify access token, return 401 if error
     try {
         console.log(`Apply auth for ${req.baseUrl}`)
@@ -33,7 +33,7 @@ async function verifyAccessToken(req, res, next) {
         })
 
         if (claimsJson) {
-            addCookies(req, res, claimsJson)
+            passClaimsData(req, res, claimsJson)
             next()
         }
     } catch (err) {
@@ -49,13 +49,10 @@ async function verifyAccessToken(req, res, next) {
 }
 
 // After the end of the proxy, adds cookies containing JWT claims for browser to interact with
-function addCookies(req, res, claimsJson) {
-    for (let [key, val] of Object.entries(claimsJson.data)) {
-        res.cookie(key, val, { httpOnly: true, secure: true })
-    }
-
+function passClaimsData(req, res, claimsJson) {
     // pass jwt claims to next middleware using req
-    req.jwt = claimsJson.data
+    const { userId, userType, userRoleId, userRole, exp } = claimsJson.data
+    req.jwt = {userId, userType, userRoleId, userRole, accessTokenExp: moment.unix(exp).toDate()}
 }
 
 module.exports = setupAuth
