@@ -1,7 +1,7 @@
 // All gateway routes
 const ROUTES = [
     {
-        url: '/api/**/auth/**',
+        url: '/api/**/auth**',
         proxy: {
             target: 'http://localhost:8080',
             changeOrigin: false,
@@ -9,7 +9,7 @@ const ROUTES = [
         },
     },
     {
-        url: '/api/auth/**',
+        url: '/api/auth**',
         proxy: {
             target: 'http://localhost:8080',
             changeOrigin: false,
@@ -41,7 +41,7 @@ const ROUTES = [
         },
     },
     {
-        url: '/api/ap/org/**',
+        url: '/api/**/org**',
         proxy: {
             target: 'http://localhost:8082',
             changeOrigin: false,
