@@ -74,6 +74,7 @@ const PUBLIC_ROUTES = [
     '/api/auth/**',
     '/api/**/user/register',
     '/upload/image/profile-pic',
+    '/api/mp/user/verify',
 ]
 
 // Send claims info for downstream services to retrieve
