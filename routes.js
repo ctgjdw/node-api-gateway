@@ -65,9 +65,9 @@ const ROUTES = [
         },
     },
     {
-        url: '/mp/verify-acc**',
+        url: '/**',
         proxy: {
-            target: 'http://localhost:3000',
+            target: 'http://localhost:8090',
             changeOrigin: false,
         },
     },

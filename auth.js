@@ -22,6 +22,20 @@ async function verifyAccessToken(req, res, next) {
         }
     }
 
+    // allow static files
+    if (
+        req.baseUrl.endsWith('.json') ||
+        req.baseUrl.endsWith('.js') ||
+        req.baseUrl.endsWith('.css') ||
+        req.baseUrl.endsWith('.ico') ||
+        req.baseUrl.endsWith('.png')
+
+    ) {
+        console.log(true);
+        next()
+        return
+    }
+
     // call verify access token, return 401 if error
     try {
         console.log(`Apply auth for ${req.baseUrl}`)
