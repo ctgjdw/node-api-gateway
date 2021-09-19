@@ -64,6 +64,13 @@ const ROUTES = [
             onProxyReq: relayRequestHeaders,
         },
     },
+    {
+        url: '/mp/verify-acc**',
+        proxy: {
+            target: 'http://localhost:8090',
+            changeOrigin: false,
+        },
+    },
 ]
 
 // All public routes for gateway. Works as a whitelist against the auth check.
@@ -75,6 +82,7 @@ const PUBLIC_ROUTES = [
     '/api/**/user/register',
     '/upload/image/profile-pic',
     '/api/mp/user/verify',
+    '/mp/verify-acc**',
 ]
 
 // Send claims info for downstream services to retrieve
