@@ -13,7 +13,7 @@ const app = express()
 
 // Setup CORS
 const corsOptions = {
-    origin: 'https://*.eq-lab-dev.me',
+    origin: ['https://*.eq-lab-dev.me', 'http://localhost'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
