@@ -84,6 +84,7 @@ const PUBLIC_ROUTES = [
     '/api/mp/user/verify',
     '/mp/verify-acc**',
     '/api/ap/partner/register',
+    '/upload/docs/ap/biz-docs'
 ]
 
 // Send claims info for downstream services to retrieve
