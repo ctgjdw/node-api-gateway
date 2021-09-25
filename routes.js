@@ -64,13 +64,6 @@ const ROUTES = [
             onProxyReq: relayRequestHeaders,
         },
     },
-    {
-        url: '/**',
-        proxy: {
-            target: 'http://localhost:3000',
-            changeOrigin: false,
-        },
-    },
 ]
 
 // All public routes for gateway. Works as a whitelist against the auth check.
